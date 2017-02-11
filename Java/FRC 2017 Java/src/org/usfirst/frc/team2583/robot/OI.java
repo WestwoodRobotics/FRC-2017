@@ -2,8 +2,6 @@ package org.usfirst.frc.team2583.robot;
 
 import org.usfirst.frc.team2583.libraries.XBoxController;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -45,7 +43,7 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	public OI(){
 		x1 = new XBoxController(0);
-		if(x1.getIsXbox() == false)SmartDashboard.putString("Error", "The Xbox Controller (x1) is not an Xbox Controller");
+		//if(x1.getIsXbox() == false);
 	}
 }
 

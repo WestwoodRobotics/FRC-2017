@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2583.robot.commands;
 
 import org.usfirst.frc.team2583.robot.OI;
+import org.usfirst.frc.team2583.robot.Robot;
 import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class OperateFlap extends Command {
 
-	BallFlap flap = BallFlap.getInstance();
-	OI oi = OI.getInstance();
+	BallFlap flap = Robot.flap;
+	OI oi = Robot.oi;
 	
     public OperateFlap() {
         requires(flap);

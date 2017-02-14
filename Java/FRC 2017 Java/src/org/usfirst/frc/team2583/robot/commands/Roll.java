@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2583.robot.commands;
 
 import org.usfirst.frc.team2583.robot.OI;
+import org.usfirst.frc.team2583.robot.Robot;
 import org.usfirst.frc.team2583.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Roll extends Command {
 
-	Roller roller = Roller.getInstance();
-	OI oi = OI.getInstance();
+	Roller roller = Robot.roller;
+	OI oi = Robot.oi;
 	
     public Roll() {
     	requires(roller);

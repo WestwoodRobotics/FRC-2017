@@ -20,10 +20,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
-	public static DriveTrain drivetrain;
-	public static BallFlap flap;
-	public static Roller roller;
+	public final static OI oi = new OI();
+	public final static DriveTrain drivetrain = new DriveTrain();
+	public final static BallFlap flap = new BallFlap();
+	public final static Roller roller = new Roller();
 	
     Command autonomousCommand;
 //    SendableChooser chooser;
@@ -33,11 +33,6 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = OI.getInstance();
-		drivetrain = DriveTrain.getInstance();
-		flap = new BallFlap();
-		roller = new Roller();
-		
 //        chooser = new SendableChooser();
 //        chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());

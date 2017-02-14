@@ -27,9 +27,5 @@ public class BallFlap extends Subsystem {
     	
     }
     
-    public static BallFlap getInstance(){
-    	if(instance == null)instance = new BallFlap();
-    	return instance;
-    }
 }
 

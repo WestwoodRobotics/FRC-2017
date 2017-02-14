@@ -8,13 +8,8 @@ import org.usfirst.frc.team2583.libraries.XBoxController;
  */
 public class OI {
 
-	private static OI instance;
 	public XBoxController x1;
 	
-	public static OI getInstance() {
-		if(instance == null) instance = new OI();
-		return instance;
-	}
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button

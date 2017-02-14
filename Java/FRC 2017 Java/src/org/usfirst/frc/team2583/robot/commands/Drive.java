@@ -1,14 +1,15 @@
 package org.usfirst.frc.team2583.robot.commands;
 
 import org.usfirst.frc.team2583.robot.OI;
+import org.usfirst.frc.team2583.robot.Robot;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Drive extends Command{
 
-	DriveTrain drivetrain = DriveTrain.getInstance();
-	OI oi = OI.getInstance();
+	DriveTrain drivetrain = Robot.drivetrain;
+	OI oi = Robot.oi;
 	
 	public Drive(){
 		requires(drivetrain);

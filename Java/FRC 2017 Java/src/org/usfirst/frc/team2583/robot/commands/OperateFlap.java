@@ -2,6 +2,7 @@ package org.usfirst.frc.team2583.robot.commands;
 
 import org.usfirst.frc.team2583.robot.OI;
 import org.usfirst.frc.team2583.robot.Robot;
+import org.usfirst.frc.team2583.robot.RobotMap;
 import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,8 +25,7 @@ public class OperateFlap extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	flap.runMotor((oi.x1.getButtonA() ? 1 : 0) 
-    				- (oi.x1.getButtonB() ? 1 : 0));
+    	flap.runMotor(oi.joy.getRawAxis(RobotMap.joyYAxis));
     }
 
     // Make this return true when this Command no longer needs to run execute()

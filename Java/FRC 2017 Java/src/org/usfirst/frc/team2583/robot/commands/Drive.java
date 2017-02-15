@@ -2,6 +2,7 @@ package org.usfirst.frc.team2583.robot.commands;
 
 import org.usfirst.frc.team2583.robot.OI;
 import org.usfirst.frc.team2583.robot.Robot;
+import org.usfirst.frc.team2583.robot.RobotMap;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,7 +24,10 @@ public class Drive extends Command{
 
 	@Override
 	protected void execute() {
-		drivetrain.tankDrive(oi.x1.getLeftY(), oi.x1.getRightY());
+		double left = Robot.oi.x1.getRawAxis(RobotMap.leftAxis) * (RobotMap.reverseToggle ? -1 : 1);
+		double right = Robot.oi.x1.getRawAxis(RobotMap.rightAxis) * (RobotMap.reverseToggle ? -1 : 1);
+		
+		drivetrain.tankDrive(left, right);
 	}
 
 	@Override

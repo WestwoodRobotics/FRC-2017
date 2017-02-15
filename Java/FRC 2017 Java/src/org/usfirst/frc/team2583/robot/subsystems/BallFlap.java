@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2583.robot.subsystems;
 
 import org.usfirst.frc.team2583.robot.commands.OperateFlap;
-
+import org.usfirst.frc.team2583.robot.RobotMap;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,7 +15,7 @@ public class BallFlap extends Subsystem {
     // here. Call these from Commands.
 
 	static BallFlap instance;
-	CANTalon windowMotor = new CANTalon(6);
+	CANTalon windowMotor = new CANTalon(RobotMap.windowTalon);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -24,7 +24,7 @@ public class BallFlap extends Subsystem {
     }
     
     public void runMotor(double speed){
-    	
+    	windowMotor.set(speed);
     }
     
 }

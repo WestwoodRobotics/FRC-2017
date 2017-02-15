@@ -1,46 +1,35 @@
 package org.usfirst.frc.team2583.robot.commands;
 
-import org.usfirst.frc.team2583.robot.OI;
-import org.usfirst.frc.team2583.robot.Robot;
 import org.usfirst.frc.team2583.robot.RobotMap;
-import org.usfirst.frc.team2583.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Roll extends Command {
+public class ReverseToggle extends Command {
 
-	Roller roller = Robot.roller;
-	OI oi = Robot.oi;
-	
-    public Roll() {
-    	requires(roller);
+    public ReverseToggle() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     }
-    
+
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	if(Robot.oi.x1.getBackButton() || Robot.oi.joy.getTrigger()){
-    		roller.roll(-0.8);
-    		return;
-    	}
-    	
-    	roller.roll(RobotMap.rollToggle ? 0.8 : 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	RobotMap.reverseToggle = !RobotMap.reverseToggle;
     }
 
     // Called when another command which requires one or more of the same

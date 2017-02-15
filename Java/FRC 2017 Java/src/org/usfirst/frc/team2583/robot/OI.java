@@ -1,14 +1,22 @@
 package org.usfirst.frc.team2583.robot;
 
-import org.usfirst.frc.team2583.libraries.XBoxController;
+import org.usfirst.frc.team2583.robot.commands.ReverseToggle;
+import org.usfirst.frc.team2583.robot.commands.RollToggle;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
 
-	public XBoxController x1;
+	public XboxController x1 = new XboxController(0);;
+	public Joystick joy = new Joystick(1);
+	
+	
 	
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -37,8 +45,13 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	public OI(){
-		x1 = new XBoxController(0);
-		//if(x1.getIsXbox() == false);
+		Button toggleRollJ = new JoystickButton(joy, 3);
+		toggleRollJ.whenPressed(new RollToggle());
+		Button toggleRollX = new JoystickButton(x1, RobotMap.rightBumper);
+		toggleRollX.whenPressed(new RollToggle());
+		
+		Button toggleReverse = new JoystickButton(x1, RobotMap.YButton);
+		toggleReverse.whenPressed(new ReverseToggle());
 	}
 }
 

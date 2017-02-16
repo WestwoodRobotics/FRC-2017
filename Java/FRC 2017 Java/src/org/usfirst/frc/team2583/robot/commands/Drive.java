@@ -24,8 +24,8 @@ public class Drive extends Command{
 
 	@Override
 	protected void execute() {
-		double left = Robot.oi.x1.getRawAxis(RobotMap.leftAxis) * (RobotMap.reverseToggle ? -1 : 1);
-		double right = Robot.oi.x1.getRawAxis(RobotMap.rightAxis) * (RobotMap.reverseToggle ? -1 : 1);
+		double left = Robot.oi.x1.getRawAxis(RobotMap.leftAxis) * (RobotMap.reverseToggle ? -1 : 1) * (RobotMap.slowToggle ? RobotMap.maxSlow : RobotMap.maxSpeed);
+		double right = Robot.oi.x1.getRawAxis(RobotMap.rightAxis) * (RobotMap.reverseToggle ? -1 : 1) * (RobotMap.slowToggle ? RobotMap.maxSlow : RobotMap.maxSpeed);
 		
 		drivetrain.tankDrive(left, right);
 	}

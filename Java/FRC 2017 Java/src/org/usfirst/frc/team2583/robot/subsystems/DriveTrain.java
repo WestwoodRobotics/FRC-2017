@@ -33,7 +33,9 @@ public class DriveTrain extends Subsystem{
 	}
 	
 	public void tankDrive(double left, double right){
-		drive.tankDrive(left, right);
+		if(!RobotMap.reverseToggle)drive.tankDrive(left, right);
+		else drive.tankDrive(right, left);
+		
 		leftSpeed = left;
 		rightSpeed = right;
 	}

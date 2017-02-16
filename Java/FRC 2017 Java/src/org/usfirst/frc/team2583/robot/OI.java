@@ -2,6 +2,7 @@ package org.usfirst.frc.team2583.robot;
 
 import org.usfirst.frc.team2583.robot.commands.ReverseToggle;
 import org.usfirst.frc.team2583.robot.commands.RollToggle;
+import org.usfirst.frc.team2583.robot.commands.SlowToggle;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -52,6 +53,8 @@ public class OI {
 		
 		Button toggleReverse = new JoystickButton(x1, RobotMap.YButton);
 		toggleReverse.whenPressed(new ReverseToggle());
+		Button toggleSlow = new JoystickButton(x1, RobotMap.XButton);
+		toggleSlow.whenPressed(new SlowToggle());
 	}
 }
 

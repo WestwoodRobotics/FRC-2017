@@ -7,10 +7,10 @@ package org.usfirst.frc.team2583.robot;
  */
 public class RobotMap {
 	
-	public static final int fLeft = 1;
-	public static final int bLeft = 3;
-	public static final int fRight = 4;
-	public static final int bRight = 2;
+	public static final int fLeft = 4;
+	public static final int bLeft = 2;
+	public static final int fRight = 1;
+	public static final int bRight = 3;
 	
 	public static final int rollerTalon = 5;
     public static final int windowTalon = 6;
@@ -24,12 +24,15 @@ public class RobotMap {
     // Buttons
     public static final int rightBumper = 6;
     public static final int YButton = 4;
+    public static final int XButton = 3;
     
     public static final int trigger = 1;
     
     // Variables
-    public static final double maxDriveAccel = 0.2;
+    public static final double maxSpeed = 0.75;
+    public static final double maxSlow = 0.5;
     
     public static boolean rollToggle = false;
     public static boolean reverseToggle = false;
+    public static boolean slowToggle = false;
 }

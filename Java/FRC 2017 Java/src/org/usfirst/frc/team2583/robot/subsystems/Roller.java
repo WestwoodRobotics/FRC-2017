@@ -17,6 +17,10 @@ public class Roller extends Subsystem {
 
 	CANTalon rollerMotor = new CANTalon(RobotMap.rollerTalon);
 	
+	public Roller() {
+		super("Roller");
+	}
+	
     public void initDefaultCommand() {
         setDefaultCommand(new Roll());
     }

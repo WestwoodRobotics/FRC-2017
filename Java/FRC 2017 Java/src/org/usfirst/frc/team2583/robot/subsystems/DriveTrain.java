@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2583.robot.subsystems;
 
+import org.usfirst.frc.team2583.robot.Robot;
 import org.usfirst.frc.team2583.robot.RobotMap;
 import org.usfirst.frc.team2583.robot.commands.Drive;
 
@@ -20,7 +21,7 @@ public class DriveTrain extends Subsystem{
 	private double rightSpeed = 0;
 	
 	public DriveTrain(){
-		super();
+		super("DriveTrain");
 		frontleft.setInverted(true);
 		backleft.setInverted(true);
 		frontright.setInverted(true);
@@ -38,6 +39,7 @@ public class DriveTrain extends Subsystem{
 		
 		leftSpeed = left;
 		rightSpeed = right;
+		Robot.sensors.getAngle();
 	}
 	
 	/**

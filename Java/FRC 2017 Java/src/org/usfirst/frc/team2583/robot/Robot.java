@@ -4,7 +4,9 @@ package org.usfirst.frc.team2583.robot;
 import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2583.robot.subsystems.Roller;
+import org.usfirst.frc.team2583.robot.subsystems.Sensors;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -24,9 +26,10 @@ public class Robot extends IterativeRobot {
 	public final static DriveTrain drivetrain = new DriveTrain();
 	public final static BallFlap flap = new BallFlap();
 	public final static Roller roller = new Roller();
+	public final static Sensors sensors = new Sensors();
 	
     Command autonomousCommand;
-//    SendableChooser chooser;
+    //    	SendableChooser chooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -37,6 +40,10 @@ public class Robot extends IterativeRobot {
 //        chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
 //        SmartDashboard.putData("Auto mode", chooser);
+    	
+
+        // access camera
+     		CameraServer.getInstance().startAutomaticCapture();
     }
 	
 	/**

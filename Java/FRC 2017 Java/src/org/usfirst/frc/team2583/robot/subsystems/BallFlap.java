@@ -14,8 +14,12 @@ public class BallFlap extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	static BallFlap instance;
+
 	CANTalon windowMotor = new CANTalon(RobotMap.windowTalon);
+	
+	public BallFlap() {
+		super("BallFlap");
+	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

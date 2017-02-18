@@ -26,7 +26,7 @@ public class Sensors extends Subsystem {
     public double getAngle() {
     	double angle;
     	angle = gyro1.getAngle();
-    	SmartDashboard.putNumber("gyro", angle);
+    	SmartDashboard.putNumber("Gyro1", angle);
     	return angle;
     }
     

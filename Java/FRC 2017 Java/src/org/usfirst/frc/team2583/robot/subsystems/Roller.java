@@ -15,7 +15,7 @@ public class Roller extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	CANTalon rollerMotor = new CANTalon(RobotMap.rollerTalon);
+	private CANTalon rollerMotor = new CANTalon(RobotMap.rollerTalon);
 	
     public void initDefaultCommand() {
         setDefaultCommand(new Roll());

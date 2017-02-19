@@ -2,7 +2,9 @@
 package org.usfirst.frc.team2583.robot;
 
 import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
+import org.usfirst.frc.team2583.robot.subsystems.Basket;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2583.robot.subsystems.Gate;
 import org.usfirst.frc.team2583.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -20,10 +22,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public final static OI oi = new OI();
 	public final static DriveTrain drivetrain = new DriveTrain();
 	public final static BallFlap flap = new BallFlap();
 	public final static Roller roller = new Roller();
+	public final static Basket basket = new Basket();
+	public final static Gate gate = new Gate();
+	public final static OI oi = new OI();
 	
     Command autonomousCommand;
 //    SendableChooser chooser;
@@ -67,7 +71,7 @@ public class Robot extends IterativeRobot {
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
+			autonomousCommanpublic final static OI oi = new OI();d = new MyAutoCommand();
 			break;
 		case "Default Auto":
 		default:

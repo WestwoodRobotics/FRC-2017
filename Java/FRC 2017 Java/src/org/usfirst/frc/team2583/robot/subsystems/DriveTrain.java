@@ -30,6 +30,8 @@ public class DriveTrain extends Subsystem{
 		frontright.setInverted(true);
 		backright.setInverted(true);
 		
+		rightEnc.setReverseDirection(true);
+		
 		leftEnc.reset();
 		rightEnc.reset();
 	}

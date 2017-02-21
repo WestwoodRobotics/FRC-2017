@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team2583.robot;
 
+import org.usfirst.frc.team2583.robot.commands.UpdateDash;
 import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
 import org.usfirst.frc.team2583.robot.subsystems.Basket;
 import org.usfirst.frc.team2583.robot.subsystems.Climber;
@@ -47,7 +48,8 @@ public class Robot extends IterativeRobot {
 //        SmartDashboard.putData("Auto mode", chooser);
     	
     	CameraServer.getInstance().startAutomaticCapture();
-    	
+    	dashboardUpdate = new UpdateDash();
+    	dashboardUpdate.start();
     }
 	
 	/**
@@ -73,6 +75,7 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
+    	drivetrain.resetEncoders();
 //        autonomousCommand = (Command) chooser.getSelected();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -103,6 +106,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        if (dashboardUpdate != null && !dashboardUpdate.isRunning()) dashboardUpdate.start();
+        drivetrain.resetEncoders();
     }
 
     /**

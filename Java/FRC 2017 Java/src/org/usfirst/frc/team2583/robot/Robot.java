@@ -3,6 +3,7 @@ package org.usfirst.frc.team2583.robot;
 
 import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
 import org.usfirst.frc.team2583.robot.subsystems.Basket;
+import org.usfirst.frc.team2583.robot.subsystems.Climber;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2583.robot.subsystems.Gate;
 import org.usfirst.frc.team2583.robot.subsystems.Roller;
@@ -27,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public final static Roller roller = new Roller();
 	public final static Basket basket = new Basket();
 	public final static Gate gate = new Gate();
+	public final static Climber climber = new Climber();
 	public final static OI oi = new OI();
 	
     Command autonomousCommand;

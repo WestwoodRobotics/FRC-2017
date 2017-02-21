@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2583.robot.subsystems;
 
 import org.usfirst.frc.team2583.robot.RobotMap;
-import org.usfirst.frc.team2583.robot.commands.JostleBasket;
 
 import com.ctre.CANTalon;
 

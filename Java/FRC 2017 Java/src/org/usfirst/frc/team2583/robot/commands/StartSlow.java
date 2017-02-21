@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SlowToggle extends Command {
+public class StartSlow extends Command {
 
-    public SlowToggle() {
+    public StartSlow() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -24,12 +24,12 @@ public class SlowToggle extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.slowToggle = !RobotMap.slowToggle;
+    	RobotMap.slowToggle = true;
     }
 
     // Called when another command which requires one or more of the same

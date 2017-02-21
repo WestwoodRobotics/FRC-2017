@@ -15,7 +15,7 @@ public class Gate extends Subsystem {
 	static boolean open = false;
 	
 	CANTalon gate = new CANTalon(RobotMap.gateTalon);
-	Encoder enc = new Encoder(3, 4, false, Encoder.EncodingType.k4X);
+	Encoder enc = new Encoder(RobotMap.gateEncA, RobotMap.gateEncB, false, Encoder.EncodingType.k4X);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

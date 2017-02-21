@@ -26,12 +26,12 @@ public class Roll extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(Robot.oi.x1.getBackButton() || Robot.oi.joy.getTrigger()){
-    		roller.roll(-0.8);
+    	if(Robot.oi.joy.getTrigger()){
+    		roller.roll(RobotMap.rollSpeed);
     		return;
     	}
     	
-    	roller.roll(RobotMap.rollToggle ? 0.8 : 0);
+    	roller.roll(RobotMap.rollToggle ? -RobotMap.rollSpeed : 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

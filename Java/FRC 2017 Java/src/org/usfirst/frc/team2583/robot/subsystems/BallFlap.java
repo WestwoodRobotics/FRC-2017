@@ -2,8 +2,9 @@ package org.usfirst.frc.team2583.robot.subsystems;
 
 import org.usfirst.frc.team2583.robot.RobotMap;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,7 +19,7 @@ public class BallFlap extends Subsystem {
 	DigitalInput limitDown = new DigitalInput(1);
 	
 	public boolean open = true;
-	private Spark windowMotor = new Spark(RobotMap.windowSpark);
+	CANTalon windowMotor = new CANTalon(RobotMap.windowTalon);
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

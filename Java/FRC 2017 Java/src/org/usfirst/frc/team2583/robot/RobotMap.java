@@ -15,11 +15,8 @@ public class RobotMap {
 	
 	public static final int rollerTalon = 5;
     public static final int jostlerTalon = 6;
-    public static final int gateTalon = 7;
+    public static final int windowTalon = 7;
     public static final int climbTalon = 8;
-    
-    // PWM Motor
-    public static final int windowSpark = 1;
     
     // Sensors
     public static final int flapTopSwitch = 0;
@@ -35,7 +32,7 @@ public class RobotMap {
     // Axis
     public static final int leftYAxis = 1;
     public static final int rightYAxis = 5;
-    public static final int rightTrigger = 4;
+    public static final int rightTrigger = 3;
     
     public static final int joyYAxis = 1;
     

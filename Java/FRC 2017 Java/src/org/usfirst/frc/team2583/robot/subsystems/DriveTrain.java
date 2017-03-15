@@ -5,12 +5,17 @@ import org.usfirst.frc.team2583.robot.commands.Drive;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 public class DriveTrain extends Subsystem{
 
+	private BuiltInAccelerometer accel = new BuiltInAccelerometer(Accelerometer.Range.k4G);
+//	private ADXRS450_Gyro gyro;
+	
 	private CANTalon frontleft = new CANTalon(RobotMap.fLeft);
 	private CANTalon backleft = new CANTalon(RobotMap.bLeft);
 	private CANTalon frontright = new CANTalon(RobotMap.fRight);
@@ -20,9 +25,18 @@ public class DriveTrain extends Subsystem{
 	private Encoder rightEnc = new Encoder(RobotMap.driveRightA, RobotMap.driveRightB, false, Encoder.EncodingType.k4X);
 	private Encoder leftEnc = new Encoder(RobotMap.driveLeftA, RobotMap.driveLeftB, false, Encoder.EncodingType.k4X);
 	
+	public final double g = RobotMap.g;
 	
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;
+	
+	private double velX = 0;
+	private double velY = 0;
+	private double velZ = 0;
+	
+	private double posX = 0;
+	private double posY = 0;
+	private double posZ = 0;
 	
 	public DriveTrain(){
 		frontleft.setInverted(true);
@@ -32,8 +46,12 @@ public class DriveTrain extends Subsystem{
 		
 		rightEnc.setReverseDirection(true);
 		
+		leftEnc.setDistancePerPulse(RobotMap.distancePerEncPulse);
+		rightEnc.setDistancePerPulse(RobotMap.distancePerEncPulse);
+		
 		leftEnc.reset();
 		rightEnc.reset();
+//		gyro.reset();
 	}
 	
 	@Override
@@ -41,12 +59,31 @@ public class DriveTrain extends Subsystem{
 		setDefaultCommand(new Drive());
 	}
 	
+	/**
+	 * Drive the robot given inputs each set of wheels
+	 * 
+	 * @param left the speed for the left wheels
+	 * @param right the speed for the right wheels
+	 */
 	public void tankDrive(double left, double right){
 		if(!RobotMap.reverseToggle)drive.tankDrive(left, right);
 		else drive.tankDrive(right, left);
 		
 		leftSpeed = left;
 		rightSpeed = right;
+	}
+	
+	/**
+	 * Drives the robot straight forward for the specific distance and speed
+	 * 
+	 * @param speed the speed to drive forward at
+	 * @param distance the distance (in units) to drive
+	 */
+	public void drive(double speed, double angle){
+		drive.drive(speed, angle);
+		
+		leftSpeed = speed;
+		rightSpeed = speed;
 	}
 	
 	/**
@@ -65,24 +102,113 @@ public class DriveTrain extends Subsystem{
 		return leftSpeed;
 	}
 	
+	/**
+	 * 
+	 * @return the value of the encoder on the left set of wheels
+	 */
 	public int getLeftEncoder(){
 		return leftEnc.get();
 	}
 	
+	/**
+	 * 
+	 * @return the value of the encoder on the right wet of wheels
+	 */
 	public int getRightEncoder(){
 		return rightEnc.get();
 	}
 	
+	/**
+	 * reset the encoder's value on the left set of wheels
+	 */
 	public void resetLeftEncoder(){
 		leftEnc.reset();
 	}
 	
+	/**
+	 * reset the encoder's value on the right set of wheels
+	 */
 	public void resetRightEncoder(){
 		rightEnc.reset();
 	}
 	
+	/**
+	 * reset both encoders on the drivetrain
+	 */
 	public void resetEncoders(){
 		leftEnc.reset();
 		rightEnc.reset();
+	}
+	
+	/**
+	 * 
+	 * @return the value of the built-in accelerometer's x-axis
+	 */
+	public double getXAccel(){
+		return Math.abs(accel.getX()) > RobotMap.accelDeadband ? accel.getX()/g : 0;
+	}
+	
+	/**
+	 * 
+	 * @return the value of the built-in accelerometer's y-axis
+	 */
+	public double getYAccel(){	
+		return Math.abs(accel.getY()) > RobotMap.accelDeadband ? accel.getY()/g : 0;
+	}
+	
+	/**
+	 * 
+	 * @return the value of the built-in accelerometer's z-axis, compensating for gravity
+	 */
+	public double getZAccel(){
+		double a = accel.getZ() - 1;
+		return Math.abs(a) > RobotMap.accelDeadband ? a/g : 0;
+	}
+	
+	/**
+	 * 
+	 * @return the angle heading of the robot
+	 */
+	public double getGyroAngle(){
+//		return gyro.getAngle();
+		return 0;
+	}
+	
+	public void resetGyro(){
+//		gyro.reset();
+	}
+	
+	public double getXVel(){
+		return velX;
+	}
+	
+	public double getYVel(){
+		return velY;
+	}
+	
+	public double getZVel(){
+		return velZ;
+	}
+	
+	public double getXPos(){
+		return posX;
+	}
+	
+	public double getYPos(){
+		return posY;
+	}
+	
+	public double getZPos(){
+		return posZ;
+	}
+	
+	public void updateVectors(){
+		velX += getXAccel() * RobotMap.clock;
+		velY += getYAccel() * RobotMap.clock;
+		velZ += getZAccel() * RobotMap.clock;
+		
+		posX += velX * RobotMap.clock;
+		posY += velY * RobotMap.clock;
+		posZ += velZ * RobotMap.clock;
 	}
 }

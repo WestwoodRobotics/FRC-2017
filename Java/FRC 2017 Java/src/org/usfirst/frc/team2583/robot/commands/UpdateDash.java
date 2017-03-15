@@ -20,7 +20,9 @@ public class UpdateDash extends Command {
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    /**
+     * Populates the driverstation's dashboard with variable values
+     */
     protected void execute() {
     	SmartDashboard.putNumber("Left Encoder", Robot.drivetrain.getLeftEncoder());
 		SmartDashboard.putNumber("Right Encoder", Robot.drivetrain.getRightEncoder());
@@ -31,6 +33,23 @@ public class UpdateDash extends Command {
 		SmartDashboard.putBoolean("Reversed", RobotMap.reverseToggle);
 		SmartDashboard.putBoolean("Fast", RobotMap.fastToggle);
 		SmartDashboard.putBoolean("Slow", RobotMap.slowToggle);
+		
+		SmartDashboard.putNumber("X Accel", Robot.drivetrain.getXAccel());
+		SmartDashboard.putNumber("Y Accel", Robot.drivetrain.getYAccel());
+		SmartDashboard.putNumber("Z Accel", Robot.drivetrain.getZAccel());
+		
+		SmartDashboard.putNumber("Horizontal Heading", Math.sin(Math.toRadians(Robot.drivetrain.getGyroAngle())) * 50 + 50);
+		SmartDashboard.putNumber("Vertical Heading", Math.cos(Math.toRadians(Robot.drivetrain.getGyroAngle())) * 50 + 50);
+		
+		Robot.drivetrain.updateVectors();
+		
+		SmartDashboard.putNumber("X Velocity", Robot.drivetrain.getXVel());
+		SmartDashboard.putNumber("Y Velocity", Robot.drivetrain.getYVel());
+		SmartDashboard.putNumber("Z Velocity", Robot.drivetrain.getZVel());
+		
+		SmartDashboard.putNumber("X Position", Robot.drivetrain.getXPos());
+		SmartDashboard.putNumber("Y Position", Robot.drivetrain.getYPos());
+		SmartDashboard.putNumber("Z Position", Robot.drivetrain.getZPos());
     }
 
     // Make this return true when this Command no longer needs to run execute()

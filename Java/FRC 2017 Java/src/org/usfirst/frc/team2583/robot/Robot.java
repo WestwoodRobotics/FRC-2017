@@ -1,12 +1,15 @@
 
 package org.usfirst.frc.team2583.robot;
 
+import org.usfirst.frc.team2583.robot.commands.AutoForwardGear;
+import org.usfirst.frc.team2583.robot.commands.AutoLeftGear;
+import org.usfirst.frc.team2583.robot.commands.AutoRightGear;
 import org.usfirst.frc.team2583.robot.commands.UpdateDash;
 import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
 import org.usfirst.frc.team2583.robot.subsystems.Basket;
 import org.usfirst.frc.team2583.robot.subsystems.Climber;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2583.robot.subsystems.Gate;
+import org.usfirst.frc.team2583.robot.subsystems.Grabber;
 import org.usfirst.frc.team2583.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -14,6 +17,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,23 +33,18 @@ public class Robot extends IterativeRobot {
 	public final static BallFlap flap = new BallFlap();
 	public final static Roller roller = new Roller();
 	public final static Basket basket = new Basket();
-	public final static Gate gate = new Gate();
 	public final static Climber climber = new Climber();
+	public final static Grabber grabber = new Grabber();
 	public final static OI oi = new OI();
 	
     Command autonomousCommand;
-    Command dashboardUpdate;
-//    SendableChooser chooser;
+    UpdateDash dashboardUpdate;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-//        chooser = new SendableChooser();
-//        chooser.addDefault("Default Auto", new ExampleCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
-//        SmartDashboard.putData("Auto mode", chooser);
     	
     	CameraServer.getInstance().startAutomaticCapture();
     	dashboardUpdate = new UpdateDash();
@@ -76,21 +75,19 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	drivetrain.resetEncoders();
-//        autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommanpublic final static OI oi = new OI();d = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
+    	if(dashboardUpdate != null && !dashboardUpdate.isRunning()){
+    		dashboardUpdate.start();
+    	}
     	
-    	// schedule the autonomous command (example)
-//        if (autonomousCommand != null) autonomousCommand.start();
+    	int autochoice = (int)SmartDashboard.getNumber("Auto Select", 1);
+
+    	autonomousCommand =   autochoice == 3 ? new AutoRightGear() 
+    						: autochoice == 2 ? new AutoLeftGear()
+    						: new AutoForwardGear();
+
+    	if (autonomousCommand != null){
+    		autonomousCommand.start();
+    	}
     }
 
     /**

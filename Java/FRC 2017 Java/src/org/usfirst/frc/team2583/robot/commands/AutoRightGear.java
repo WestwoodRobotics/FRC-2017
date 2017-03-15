@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ToggleGate extends Command {
+public class AutoRightGear extends Command {
 
-    public ToggleGate() {
-        requires(Robot.gate);
+    public AutoRightGear() {
+        requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
@@ -23,12 +23,11 @@ public class ToggleGate extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.gate.togglePos();
     }
 
     // Called when another command which requires one or more of the same

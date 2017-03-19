@@ -7,15 +7,15 @@ import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This command needs to be initialized while the robot is backed against the wall in front of the left gear holder.
+ *
  */
-public class AutoLeftGear extends Command {
+public class BaselineAutoLeft extends Command {
 	
 	private DriveTrain dt = Robot.drivetrain;
-	public static final double driveDistance = 110;
+	public static final double driveDistance = 125;	// inches
 	
-    public AutoLeftGear() {
-        requires(Robot.drivetrain);
+    public BaselineAutoLeft() {
+    	requires(dt);
     }
 
     // Called just before this Command runs the first time
@@ -25,17 +25,17 @@ public class AutoLeftGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	dt.tankDriveAuto(RobotMap.autoSpeed, 0.9 * RobotMap.autoSpeed);
+    	dt.tankDriveAuto(RobotMap.autoSpeed, RobotMap.autoSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(dt.getRightDistance()) > driveDistance;
+        return Math.abs(dt.getLeftDistance()) > driveDistance;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	dt.tankDriveAuto(0, 0);
+    	dt.tankDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

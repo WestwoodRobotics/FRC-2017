@@ -1,7 +1,5 @@
 package org.usfirst.frc.team2583.robot.commands;
 
-import org.usfirst.frc.team2583.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -12,7 +10,7 @@ public class ToggleFlap extends Command {
 	boolean state;
 	
     public ToggleFlap() {
-        requires(Robot.flap);
+        //requires(Robot.flap);
     }
 
     // Called just before this Command runs the first time
@@ -31,7 +29,7 @@ public class ToggleFlap extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.flap.togglePos();
+    	//Robot.flap.togglePos();
     }
 
     // Called when another command which requires one or more of the same

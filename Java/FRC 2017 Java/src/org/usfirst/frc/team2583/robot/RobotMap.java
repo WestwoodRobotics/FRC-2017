@@ -17,7 +17,8 @@ public class RobotMap {
     public static final int jostlerTalon = 6;
     public static final int windowTalon = 7;
     public static final int climbTalon = 8;
-    public static final int grabberVictor = 0;
+    
+    public static final int grabberSpark = 0;
     
     // Sensors
     public static final int flapTopSwitch = 0;
@@ -34,6 +35,7 @@ public class RobotMap {
     public static final int leftYAxis = 1;
     public static final int rightYAxis = 5;
     public static final int rightTrigger = 3;
+    public static final int leftTrigger = 2;
     
     public static final int joyYAxis = 1;
     
@@ -57,15 +59,17 @@ public class RobotMap {
     
     // Other Constants
     public static final double wheelCircumference = 6 * Math.PI; // Circumference of the wheel in inches
-    public static final double distancePerEncPulse = 1 / 360 * wheelCircumference;	// Distance traveled per pulse in inches
+    public static final double distancePerEncPulse = 1.0 / 2048.0 * wheelCircumference;	// Distance traveled per pulse in inches
     public static final double Kp = 0.03;	// Scaling constant for turning with help of gyro
     public static final double g = 32.174;	// Acceleration due to gravity in ft/sec^2
     public static final double accelDeadband = 0.03;
     public static final double clock = 0.02; // Commands are called every 0.02 seconds to update
+    public static final double leftScale = 0.955;
     
     // Toggle Variables
-    public static boolean rollToggle = false;
     public static boolean reverseToggle = false;
     public static boolean fastToggle = false;
     public static boolean slowToggle = false;
+    
+    public static int gearsPlaced = 0;
 }

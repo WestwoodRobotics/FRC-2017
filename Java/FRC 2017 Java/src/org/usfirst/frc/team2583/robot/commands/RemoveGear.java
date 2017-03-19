@@ -1,41 +1,35 @@
 package org.usfirst.frc.team2583.robot.commands;
 
-import org.usfirst.frc.team2583.robot.Robot;
 import org.usfirst.frc.team2583.robot.RobotMap;
-import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This command needs to be initialized while the robot is backed against the wall in front of the left gear holder.
+ *
  */
-public class AutoLeftGear extends Command {
-	
-	private DriveTrain dt = Robot.drivetrain;
-	public static final double driveDistance = 110;
-	
-    public AutoLeftGear() {
-        requires(Robot.drivetrain);
+public class RemoveGear extends Command {
+
+    public RemoveGear() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	dt.resetEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	dt.tankDriveAuto(RobotMap.autoSpeed, 0.9 * RobotMap.autoSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(dt.getRightDistance()) > driveDistance;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	dt.tankDriveAuto(0, 0);
+    	RobotMap.gearsPlaced--;
     }
 
     // Called when another command which requires one or more of the same

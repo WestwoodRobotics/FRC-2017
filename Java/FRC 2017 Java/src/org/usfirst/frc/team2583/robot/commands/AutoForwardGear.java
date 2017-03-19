@@ -12,13 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoForwardGear extends Command {
 
-	public final static double driveDistance = 114.3;
+	public final static double driveDistance = 114.3 - 30;	// Drive distance in inches
 	
 	private final DriveTrain dt = Robot.drivetrain;
 	
     public AutoForwardGear() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(dt);
     }
 
@@ -30,12 +28,12 @@ public class AutoForwardGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	dt.drive(RobotMap.autoSpeed, -dt.getGyroAngle() * RobotMap.Kp);
+    	dt.tankDriveAuto(RobotMap.autoSpeed, RobotMap.autoSpeed * 0.97);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(dt.getLeftEncoder() + dt.getRightEncoder()) / 2 >= driveDistance;
+        return Math.abs(dt.getLeftDistance() + dt.getRightDistance()) / 2 >= driveDistance;
     }
 
     // Called once after isFinished returns true

@@ -9,6 +9,6 @@ public class Barf extends CommandGroup {
 
     public Barf() {
     	addParallel(new JostleBasket());
-    	addParallel(new ToggleFlap());
+    	//addParallel(new ToggleFlap());
     }
 }

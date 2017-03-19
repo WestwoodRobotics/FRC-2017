@@ -5,6 +5,7 @@ import org.usfirst.frc.team2583.robot.commands.Drive;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -14,7 +15,7 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 public class DriveTrain extends Subsystem{
 
 	private BuiltInAccelerometer accel = new BuiltInAccelerometer(Accelerometer.Range.k4G);
-//	private ADXRS450_Gyro gyro;
+	private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	
 	private CANTalon frontleft = new CANTalon(RobotMap.fLeft);
 	private CANTalon backleft = new CANTalon(RobotMap.bLeft);
@@ -51,7 +52,7 @@ public class DriveTrain extends Subsystem{
 		
 		leftEnc.reset();
 		rightEnc.reset();
-//		gyro.reset();
+		gyro.reset();
 	}
 	
 	@Override
@@ -67,6 +68,14 @@ public class DriveTrain extends Subsystem{
 	 */
 	public void tankDrive(double left, double right){
 		if(!RobotMap.reverseToggle)drive.tankDrive(left, right);
+		else drive.tankDrive(right, left);
+		
+		leftSpeed = left;
+		rightSpeed = right;
+	}
+	
+	public void tankDriveAuto(double left, double right){
+		if(RobotMap.reverseToggle)drive.tankDrive(left, right);
 		else drive.tankDrive(right, left);
 		
 		leftSpeed = left;
@@ -116,6 +125,14 @@ public class DriveTrain extends Subsystem{
 	 */
 	public int getRightEncoder(){
 		return rightEnc.get();
+	}
+	
+	public double getLeftDistance(){
+		return leftEnc.getDistance();
+	}
+	
+	public double getRightDistance(){
+		return rightEnc.getDistance();
 	}
 	
 	/**
@@ -170,12 +187,13 @@ public class DriveTrain extends Subsystem{
 	 * @return the angle heading of the robot
 	 */
 	public double getGyroAngle(){
-//		return gyro.getAngle();
-		return 0;
+		return gyro.getAngle();
+//		return 0;
 	}
 	
 	public void resetGyro(){
-//		gyro.reset();
+		gyro.reset();
+//		return;
 	}
 	
 	public double getXVel(){

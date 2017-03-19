@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Grab extends Command {
 
     public Grab() {
-    	requires(Robot.grabber);
+//    	requires(Robot.grabber);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class Grab extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.grabber.move(Robot.oi.joy.getRawAxis(RobotMap.joyYAxis));
+//    	Robot.grabber.move(Robot.oi.joy.getRawAxis(RobotMap.joyYAxis));
     }
 
     // Make this return true when this Command no longer needs to run execute()

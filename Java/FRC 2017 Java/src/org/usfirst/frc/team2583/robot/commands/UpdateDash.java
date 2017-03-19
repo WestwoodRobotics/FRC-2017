@@ -50,6 +50,8 @@ public class UpdateDash extends Command {
 		SmartDashboard.putNumber("X Position", Robot.drivetrain.getXPos());
 		SmartDashboard.putNumber("Y Position", Robot.drivetrain.getYPos());
 		SmartDashboard.putNumber("Z Position", Robot.drivetrain.getZPos());
+		
+		SmartDashboard.putNumber("Gears", RobotMap.gearsPlaced);
     }
 
     // Make this return true when this Command no longer needs to run execute()

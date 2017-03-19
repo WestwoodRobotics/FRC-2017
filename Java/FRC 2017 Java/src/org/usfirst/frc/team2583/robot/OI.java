@@ -1,8 +1,9 @@
 package org.usfirst.frc.team2583.robot;
 
+import org.usfirst.frc.team2583.robot.commands.AddGear;
 import org.usfirst.frc.team2583.robot.commands.Barf;
+import org.usfirst.frc.team2583.robot.commands.RemoveGear;
 import org.usfirst.frc.team2583.robot.commands.ReverseToggle;
-import org.usfirst.frc.team2583.robot.commands.RollToggle;
 import org.usfirst.frc.team2583.robot.commands.StartFast;
 import org.usfirst.frc.team2583.robot.commands.StartSlow;
 import org.usfirst.frc.team2583.robot.commands.StopFast;
@@ -24,10 +25,12 @@ public class OI {
 	public OI(){
 		
 		// Flight joystick buttons/axis
-		Button toggleRoll = new JoystickButton(joy, 3);
-		toggleRoll.whenPressed(new RollToggle());
 		Button toggleBarf = new JoystickButton(joy, RobotMap.barfButton);
 		toggleBarf.whenPressed(new Barf());
+		Button addGear = new JoystickButton(joy, 5);
+		addGear.whenPressed(new AddGear());
+		Button removeGear = new JoystickButton(joy, 4);
+		removeGear.whenPressed(new RemoveGear());
 		
 		// Xbox controller buttons/axis
 		Button toggleReverse = new JoystickButton(x1, RobotMap.YButton);

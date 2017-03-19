@@ -21,8 +21,9 @@ public class OperateClimber extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double speed;
-    	if(Robot.oi.joy.getRawButton(4)) speed = RobotMap.climbSpeed * -1;
-    	else speed = (Robot.oi.joy.getRawButton(5) ? RobotMap.climbSpeed : Robot.oi.x1.getRawAxis(RobotMap.rightTrigger) * RobotMap.climbSpeed);
+    	//if(Robot.oi.joy.getRawButton(4)) speed = RobotMap.climbSpeed * -1;
+    	//else
+    	speed = (Robot.oi.joy.getRawButton(5) ? RobotMap.climbSpeed : Robot.oi.x1.getRawAxis(RobotMap.rightTrigger) * RobotMap.climbSpeed);
     	
     	Robot.climber.run(speed);
     }

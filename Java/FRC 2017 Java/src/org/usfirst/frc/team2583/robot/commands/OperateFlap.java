@@ -16,7 +16,7 @@ public class OperateFlap extends Command {
 	OI oi = Robot.oi;
 	
     public OperateFlap() {
-        requires(flap);
+    	requires(flap);
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +25,9 @@ public class OperateFlap extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	flap.runMotor(oi.joy.getRawAxis(RobotMap.joyYAxis));
+    	if(oi.joy.getRawButton(11)){
+    		flap.runMotor(oi.joy.getRawAxis(RobotMap.joyYAxis));
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

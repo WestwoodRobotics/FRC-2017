@@ -27,11 +27,13 @@ public class Roll extends Command {
     protected void execute() {
     	
     	if(Robot.oi.joy.getTrigger()){
-    		roller.roll(RobotMap.rollSpeed);
-    		return;
+    		if(Math.abs(Robot.oi.joy.getRawAxis(RobotMap.joyYAxis)) > 0.1){
+    			roller.roll(Robot.oi.joy.getRawAxis(RobotMap.joyYAxis));
+    		}else{
+    			roller.roll(Robot.oi.x1.getRawAxis(RobotMap.rightTrigger) - Robot.oi.x1.getRawAxis(RobotMap.leftTrigger));
+    		}
     	}
     	
-    	roller.roll(RobotMap.rollToggle ? -RobotMap.rollSpeed : 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

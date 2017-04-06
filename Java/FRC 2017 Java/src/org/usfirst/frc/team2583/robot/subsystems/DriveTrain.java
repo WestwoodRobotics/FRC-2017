@@ -23,7 +23,7 @@ public class DriveTrain extends Subsystem{
 	private CANTalon backright = new CANTalon(RobotMap.bRight);
 	private RobotDrive drive = new RobotDrive(frontleft, backleft, frontright, backright);
 	
-	private Encoder rightEnc = new Encoder(RobotMap.driveRightA, RobotMap.driveRightB, false, Encoder.EncodingType.k4X);
+	private Encoder rightEnc = new Encoder(RobotMap.driveRightA, RobotMap.driveRightB, true, Encoder.EncodingType.k4X);
 	private Encoder leftEnc = new Encoder(RobotMap.driveLeftA, RobotMap.driveLeftB, false, Encoder.EncodingType.k4X);
 	
 	public final double g = RobotMap.g;
@@ -44,8 +44,6 @@ public class DriveTrain extends Subsystem{
 		backleft.setInverted(true);
 		frontright.setInverted(true);
 		backright.setInverted(true);
-		
-		rightEnc.setReverseDirection(true);
 		
 		leftEnc.setDistancePerPulse(RobotMap.distancePerEncPulse);
 		rightEnc.setDistancePerPulse(RobotMap.distancePerEncPulse);

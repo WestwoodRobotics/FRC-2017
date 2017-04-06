@@ -4,14 +4,12 @@ package org.usfirst.frc.team2583.robot;
 import org.usfirst.frc.team2583.robot.commands.AutoForwardGear;
 import org.usfirst.frc.team2583.robot.commands.AutoLeftGear;
 import org.usfirst.frc.team2583.robot.commands.AutoRightGear;
-import org.usfirst.frc.team2583.robot.commands.BaselineAutoLeft;
-import org.usfirst.frc.team2583.robot.commands.BaselineAutoRight;
+import org.usfirst.frc.team2583.robot.commands.BaselineAuto;
 import org.usfirst.frc.team2583.robot.commands.UpdateDash;
 import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
 import org.usfirst.frc.team2583.robot.subsystems.Basket;
 import org.usfirst.frc.team2583.robot.subsystems.Climber;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2583.robot.subsystems.Grabber;
 import org.usfirst.frc.team2583.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -82,8 +80,7 @@ public class Robot extends IterativeRobot {
     	
     	int autochoice = (int)SmartDashboard.getNumber("Auto Select", 1);
 
-    	autonomousCommand =   autochoice == 5 ? new BaselineAutoRight()
-    						: autochoice == 4 ? new BaselineAutoLeft()
+    	autonomousCommand =   autochoice == 4 ? new BaselineAuto()
     						: autochoice == 3 ? new AutoRightGear() 
     						: autochoice == 2 ? new AutoLeftGear()
     						: new AutoForwardGear();

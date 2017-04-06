@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class BaselineAutoRight extends Command {
+public class BaselineAuto extends Command {
 
 	private DriveTrain dt = Robot.drivetrain;
-	public static final double driveDistance = 125;
+	public static final double driveDistance = 125;	// inches
 	
-    public BaselineAutoRight() {
+    public BaselineAuto() {
     	requires(dt);
     }
 

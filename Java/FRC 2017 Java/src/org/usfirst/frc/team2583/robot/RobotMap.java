@@ -48,6 +48,8 @@ public class RobotMap {
     public static final int trigger = 1;
     public static final int barfButton = 6;
     
+    public static final int pidDrive = 8;  // joystick
+    
     // Speed Constants
     public static final double maxFast = 0.85;
     public static final double maxMedium = 0.75;

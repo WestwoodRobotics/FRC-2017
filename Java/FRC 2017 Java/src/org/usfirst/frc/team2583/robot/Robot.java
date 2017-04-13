@@ -10,6 +10,8 @@ import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
 import org.usfirst.frc.team2583.robot.subsystems.Basket;
 import org.usfirst.frc.team2583.robot.subsystems.Climber;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2583.robot.subsystems.PIDDriveLeft;
+import org.usfirst.frc.team2583.robot.subsystems.PIDDriveRt;
 import org.usfirst.frc.team2583.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -33,6 +35,10 @@ public class Robot extends IterativeRobot {
 	public final static Roller roller = new Roller();
 	public final static Basket basket = new Basket();
 	public final static Climber climber = new Climber();
+	
+	public final static PIDDriveRt driveRT = new PIDDriveRt();
+	public final static PIDDriveLeft driveLF = new PIDDriveLeft();
+	
 //	public static Grabber grabber;// = new Grabber();
 	public final static OI oi = new OI();
 	

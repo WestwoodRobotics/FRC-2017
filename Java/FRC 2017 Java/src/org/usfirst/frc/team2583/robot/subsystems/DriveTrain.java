@@ -8,7 +8,9 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
@@ -17,11 +19,18 @@ public class DriveTrain extends Subsystem{
 	private BuiltInAccelerometer accel = new BuiltInAccelerometer(Accelerometer.Range.k4G);
 	private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	
+	private boolean testBot = true;
+	
 	private CANTalon frontleft = new CANTalon(RobotMap.fLeft);
 	private CANTalon backleft = new CANTalon(RobotMap.bLeft);
 	private CANTalon frontright = new CANTalon(RobotMap.fRight);
 	private CANTalon backright = new CANTalon(RobotMap.bRight);
 	private RobotDrive drive = new RobotDrive(frontleft, backleft, frontright, backright);
+	
+	private Talon frontleftT = new Talon(RobotMap.fLeft);
+	private Talon backleftT = new Talon(RobotMap.bLeft);
+	private Talon frontrightT = new Talon(RobotMap.fRight);
+	private Talon backrightT = new Talon(RobotMap.bRight);
 	
 	private Encoder rightEnc = new Encoder(RobotMap.driveRightA, RobotMap.driveRightB, true, Encoder.EncodingType.k4X);
 	private Encoder leftEnc = new Encoder(RobotMap.driveLeftA, RobotMap.driveLeftB, false, Encoder.EncodingType.k4X);
@@ -30,6 +39,9 @@ public class DriveTrain extends Subsystem{
 	
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;
+	
+	private double lSpeed = 0; // used for PID Drive
+	private double rSpeed = 0; 
 	
 	private double velX = 0;
 	private double velY = 0;
@@ -44,6 +56,13 @@ public class DriveTrain extends Subsystem{
 		backleft.setInverted(true);
 		frontright.setInverted(true);
 		backright.setInverted(true);
+		
+		if (testBot) {
+			drive = new RobotDrive(frontleftT, backleftT, frontrightT, backrightT);
+		} else
+			drive = new RobotDrive(frontleft, backleft, frontright, backright);
+		
+		
 		
 		leftEnc.setDistancePerPulse(RobotMap.distancePerEncPulse);
 		rightEnc.setDistancePerPulse(RobotMap.distancePerEncPulse);
@@ -80,6 +99,11 @@ public class DriveTrain extends Subsystem{
 		rightSpeed = right;
 	}
 	
+	public void pidDrive() {
+		// speeds for left and right are set by PIDDriveXX controls
+		tankDrive(lSpeed, rSpeed);
+	}
+	
 	/**
 	 * Drives the robot straight forward for the specific distance and speed
 	 * 
@@ -93,9 +117,29 @@ public class DriveTrain extends Subsystem{
 		rightSpeed = speed;
 	}
 	
-	/**
-	 * 
-	 * @return the current speed of the right motors
+	 // set speed variabls from PIDSubsystem
+    public void setRightSpeed(double rightSpeed) {
+    	rSpeed = rightSpeed;
+    }
+    
+    public void setLeftSpeed(double leftSpeed) {
+    	lSpeed = leftSpeed;
+    }
+    
+    public void setEncoderPIDType(PIDSourceType pType) {
+    	leftEnc.setPIDSourceType(pType);
+    	rightEnc.setPIDSourceType(pType);
+    }
+    
+    public double getPIDRight() {
+    	return rightEnc.pidGet();
+    	
+    }
+    
+    public double getPIDLeft() {
+    	return leftEnc.pidGet();
+    }
+	 /* @return the current speed of the right motors
 	 */
 	public double getRSpeed(){
 		return rightSpeed;
@@ -131,6 +175,14 @@ public class DriveTrain extends Subsystem{
 	
 	public double getRightDistance(){
 		return rightEnc.getDistance();
+	}
+	
+	public double getRightRate() {
+		return rightEnc.getRate();
+	}
+	
+	public double getLeftRate() {
+		return leftEnc.getRate();
 	}
 	
 	/**

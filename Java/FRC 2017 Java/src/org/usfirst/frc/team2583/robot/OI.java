@@ -4,6 +4,7 @@ import org.usfirst.frc.team2583.robot.commands.AddGear;
 import org.usfirst.frc.team2583.robot.commands.Barf;
 import org.usfirst.frc.team2583.robot.commands.RemoveGear;
 import org.usfirst.frc.team2583.robot.commands.ReverseToggle;
+import org.usfirst.frc.team2583.robot.commands.SpeedDrive;
 import org.usfirst.frc.team2583.robot.commands.StartFast;
 import org.usfirst.frc.team2583.robot.commands.StartSlow;
 import org.usfirst.frc.team2583.robot.commands.StopFast;
@@ -31,6 +32,9 @@ public class OI {
 		addGear.whenPressed(new AddGear());
 		Button removeGear = new JoystickButton(joy, 4);
 		removeGear.whenPressed(new RemoveGear());
+		
+		Button pidDrive = new JoystickButton(joy, RobotMap.pidDrive);
+		pidDrive.whenPressed(new SpeedDrive(32));  // drive distance in inches using PID
 		
 		// Xbox controller buttons/axis
 		Button toggleReverse = new JoystickButton(x1, RobotMap.YButton);

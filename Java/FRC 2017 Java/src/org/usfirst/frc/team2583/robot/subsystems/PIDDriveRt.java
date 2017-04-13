@@ -2,7 +2,6 @@ package org.usfirst.frc.team2583.robot.subsystems;
 
 import org.usfirst.frc.team2583.robot.Robot;
 
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**

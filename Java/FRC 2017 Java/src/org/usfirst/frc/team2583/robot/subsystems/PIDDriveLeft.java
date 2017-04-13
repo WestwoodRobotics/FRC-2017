@@ -1,9 +1,6 @@
 package org.usfirst.frc.team2583.robot.subsystems;
 
 import org.usfirst.frc.team2583.robot.Robot;
-import org.usfirst.frc.team2583.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**

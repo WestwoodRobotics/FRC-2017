@@ -28,6 +28,7 @@ public class SpeedDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drivetrain.setEncoderPIDType(PIDSourceType.kRate);
+    	Robot.drivetrain.resetEncoders();
     	Robot.driveRT.setSetpoint(5.0); // set speed
     	Robot.driveRT.enable();         // start PID control
     	Robot.driveLF.setSetpoint(5.0); // set speed

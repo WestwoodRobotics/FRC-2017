@@ -118,12 +118,12 @@ public class DriveTrain extends Subsystem{
 	}
 	
 	 // set speed variabls from PIDSubsystem
-    public void setRightSpeed(double rightSpeed) {
-    	rSpeed = rightSpeed;
+    public void setRightSpeed(double rtSpeed) {
+    	rSpeed = rtSpeed;
     }
     
-    public void setLeftSpeed(double leftSpeed) {
-    	lSpeed = leftSpeed;
+    public void setLeftSpeed(double ltSpeed) {
+    	lSpeed = ltSpeed;
     }
     
     public void setEncoderPIDType(PIDSourceType pType) {

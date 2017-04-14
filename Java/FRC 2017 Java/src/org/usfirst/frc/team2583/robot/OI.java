@@ -25,22 +25,31 @@ public class OI {
 	public OI(){
 		
 		// Flight joystick buttons/axis
-		Button addGear = new JoystickButton(joy, 5);
+		// Adds one to the gear count on the dashboard
+		Button addGear = new JoystickButton(joy, 5);		// TODO: change this button to a different one
 		addGear.whenPressed(new AddGear());
-		Button removeGear = new JoystickButton(joy, 4);
+		// Subtracts one from the gera count on the dashboard
+		Button removeGear = new JoystickButton(joy, 4);		// TODO: change this button to a different one
 		removeGear.whenPressed(new RemoveGear());
-		Button gearPress = new JoystickButton(joy, 6);
-		gearPress.whenPressed(new PressGear());
+		// Activates the gear mechanism
+		Button gearPressJ = new JoystickButton(joy, 6);
+		gearPressJ.whenPressed(new PressGear());
 		
 		// Xbox controller buttons/axis
+		// Toggles reverse mode
 		Button toggleReverse = new JoystickButton(x1, RobotMap.YButton);
 		toggleReverse.whenPressed(new ReverseToggle());
-		Button toggleSlow = new JoystickButton(x1, RobotMap.rightBumper);
-		toggleSlow.whenPressed(new StartSlow());
-		toggleSlow.whenReleased(new StopSlow());
-		Button toggleFast = new JoystickButton(x1, RobotMap.leftBumper);
-		toggleFast.whenPressed(new StartFast());
-		toggleFast.whenReleased(new StopFast());
+		// Runs the robot in slow mode while held down
+		Button runSlow = new JoystickButton(x1, RobotMap.rightBumper);
+		runSlow.whenPressed(new StartSlow());
+		runSlow.whenReleased(new StopSlow());
+		// Runs the robot in fast mode while held down
+		Button runFast = new JoystickButton(x1, RobotMap.leftBumper);
+		runFast.whenPressed(new StartFast());
+		runFast.whenReleased(new StopFast());
+		// Activates the gear mechanism
+		Button gearPressX = new JoystickButton(x1, RobotMap.AButton);
+		gearPressX.whenPressed(new PressGear());
 	}
 }
 

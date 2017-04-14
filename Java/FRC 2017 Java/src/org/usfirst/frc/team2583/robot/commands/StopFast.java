@@ -29,7 +29,7 @@ public class StopFast extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.fastToggle = false;
+    	RobotMap.isFast = false;
     }
 
     // Called when another command which requires one or more of the same

@@ -79,7 +79,7 @@ public class DriveTrain extends Subsystem{
 	 * @param right the speed for the right wheels
 	 */
 	public void tankDrive(double left, double right){
-		if(!RobotMap.reverseToggle)drive.tankDrive(left, right);
+		if(!RobotMap.isReversed)drive.tankDrive(left, right);
 		else drive.tankDrive(right, left);
 		
 		leftSpeed = left;
@@ -93,7 +93,7 @@ public class DriveTrain extends Subsystem{
 	 * @param right the speed for the right wheels
 	 */
 	public void tankDriveAuto(double left, double right){
-		if(RobotMap.reverseToggle)drive.tankDrive(left, right);
+		if(RobotMap.isReversed)drive.tankDrive(left, right);
 		else drive.tankDrive(right, left);
 		
 		leftSpeed = left;

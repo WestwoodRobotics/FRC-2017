@@ -26,14 +26,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public final static GearMech gearMech = new GearMech();
-	public final static DriveTrain drivetrain = new DriveTrain();
-	public final static Roller roller = new Roller();
-	public final static Climber climber = new Climber();
-	public final static OI oi = new OI();
+	public final static GearMech gearMech = new GearMech();			// The GearMech is the active gear mechanism
+	public final static DriveTrain drivetrain = new DriveTrain();	// The DriveTrain controls the wheels of the robot
+	public final static Roller roller = new Roller();				// The roller is used for intake on the robot
+	public final static Climber climber = new Climber();			// The climber is used to climb the rope at the end of the match
+	public final static OI oi = new OI();							// The Operator Interface class handles button presses
 	
-    Command autonomousCommand;
-    UpdateDash dashboardUpdate;
+    Command autonomousCommand;	// Hold the command to execute during Autonomous Mode
+    UpdateDash dashboardUpdate;	// The command that constantly populates the LabView Dashboard with information
 
     /**
      * This function is run when the robot is first started up and should be
@@ -42,6 +42,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	//CameraServer.getInstance().startAutomaticCapture();
+    	
+    	// Starts the dashboardUpdate command
     	dashboardUpdate = new UpdateDash();
     	dashboardUpdate.start();
     }
@@ -60,27 +62,27 @@ public class Robot extends IterativeRobot {
 	}
 
 	/**
-	 * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
-	 * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
-	 * Dashboard, remove all of the chooser code and uncomment the getString code to get the auto name from the text box
-	 * below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
-	 * or additional comparisons to the switch structure below with additional strings & commands.
+	 * This function takes input from the LabView Dashboard, chooses, and starts the Autonomous program
 	 */
     public void autonomousInit() {
+    	// Reset the encoders (most Autonomous modes rely on this)
     	drivetrain.resetEncoders();
+    	
+    	// If dashboardUpdate has been initialized, start it
     	if(dashboardUpdate != null && !dashboardUpdate.isRunning()){
     		dashboardUpdate.start();
     	}
     	
+    	// Get the input from the Dashboard in integer form
     	int autochoice = (int)SmartDashboard.getNumber("Auto Select", 1);
 
-    	autonomousCommand =   autochoice == 4 ? new BaselineAuto()
-    						: autochoice == 3 ? new AutoRightGear() 
-    						: autochoice == 2 ? new AutoLeftGear()
-    						: new AutoForwardGear();
+    	// Assign the command for autonomous
+    	autonomousCommand =   autochoice == 4 ? new BaselineAuto()	// Choice #4: break the baseline
+    						: autochoice == 3 ? new AutoRightGear() // Choice #3: place the gear on the right side of the airship
+    						: autochoice == 2 ? new AutoLeftGear()	// Choice #2: place the gear on the left side of the airship
+    						: new AutoForwardGear();				// Default: place the gear on the middle peg of the airship
 
+    	// If autonomousCommand has been properly initialized, start it
     	if (autonomousCommand != null){
     		autonomousCommand.start();
     	}
@@ -94,12 +96,11 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
+    	// Stop the autonomous command if it is still running
         if (autonomousCommand != null) autonomousCommand.cancel();
+        // Make sure the dashboard is being updated
         if (dashboardUpdate != null && !dashboardUpdate.isRunning()) dashboardUpdate.start();
+        // Reset the encoders
         drivetrain.resetEncoders();
     }
 

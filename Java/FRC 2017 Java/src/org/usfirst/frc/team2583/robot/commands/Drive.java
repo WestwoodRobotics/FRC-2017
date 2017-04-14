@@ -25,7 +25,7 @@ public class Drive extends Command{
 	@Override
 	protected void execute() {
 		// The modifier takes into account reverse, fast, and slow modes
-		double modifier = (RobotMap.reverseToggle ? -1 : 1) * (RobotMap.slowToggle ? RobotMap.maxSlow : RobotMap.fastToggle ? RobotMap.maxFast : RobotMap.maxMedium);
+		double modifier = (RobotMap.isReversed ? -1 : 1) * (RobotMap.isSlow ? RobotMap.maxSlowSpeed : RobotMap.isFast ? RobotMap.maxFastSpeed : RobotMap.maxNormSpeed);
 		double left = Robot.oi.x1.getRawAxis(RobotMap.leftYAxis) * modifier;
 		double right = Robot.oi.x1.getRawAxis(RobotMap.rightYAxis) * modifier;
 		

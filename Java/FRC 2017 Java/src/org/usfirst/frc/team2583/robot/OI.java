@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2583.robot;
 
 import org.usfirst.frc.team2583.robot.commands.AddGear;
-import org.usfirst.frc.team2583.robot.commands.Barf;
+import org.usfirst.frc.team2583.robot.commands.PressGear;
 import org.usfirst.frc.team2583.robot.commands.RemoveGear;
 import org.usfirst.frc.team2583.robot.commands.ReverseToggle;
 import org.usfirst.frc.team2583.robot.commands.StartFast;
@@ -25,12 +25,12 @@ public class OI {
 	public OI(){
 		
 		// Flight joystick buttons/axis
-		Button toggleBarf = new JoystickButton(joy, RobotMap.barfButton);
-		toggleBarf.whenPressed(new Barf());
 		Button addGear = new JoystickButton(joy, 5);
 		addGear.whenPressed(new AddGear());
 		Button removeGear = new JoystickButton(joy, 4);
 		removeGear.whenPressed(new RemoveGear());
+		Button gearPress = new JoystickButton(joy, 6);
+		gearPress.whenPressed(new PressGear());
 		
 		// Xbox controller buttons/axis
 		Button toggleReverse = new JoystickButton(x1, RobotMap.YButton);

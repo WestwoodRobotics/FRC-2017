@@ -14,40 +14,53 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 public class DriveTrain extends Subsystem{
 
+	// Initializes the accelerometer and gyro
 	private BuiltInAccelerometer accel = new BuiltInAccelerometer(Accelerometer.Range.k4G);
 	private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	
+	// Initializing the motors and the RobotDrive object
 	private CANTalon frontleft = new CANTalon(RobotMap.fLeft);
 	private CANTalon backleft = new CANTalon(RobotMap.bLeft);
 	private CANTalon frontright = new CANTalon(RobotMap.fRight);
 	private CANTalon backright = new CANTalon(RobotMap.bRight);
 	private RobotDrive drive = new RobotDrive(frontleft, backleft, frontright, backright);
 	
+	// Initializes the encoders
 	private Encoder rightEnc = new Encoder(RobotMap.driveRightA, RobotMap.driveRightB, true, Encoder.EncodingType.k4X);
 	private Encoder leftEnc = new Encoder(RobotMap.driveLeftA, RobotMap.driveLeftB, false, Encoder.EncodingType.k4X);
 	
+	// Local reference to the constant for gravitational acceleration
 	public final double g = RobotMap.g;
 	
+	// Variables to track the speed of each side's wheels with a range of [-1, 1]
 	private double leftSpeed = 0;
 	private double rightSpeed = 0;
 	
+	// Velocity variables (relying on integration of the accelerometer)
 	private double velX = 0;
 	private double velY = 0;
 	private double velZ = 0;
 	
+	// Position variables (relying on integration of the accelerometer)
 	private double posX = 0;
 	private double posY = 0;
 	private double posZ = 0;
 	
+	/**
+	 * Default constructor
+	 */
 	public DriveTrain(){
+		// Reverse the wheels
 		frontleft.setInverted(true);
 		backleft.setInverted(true);
 		frontright.setInverted(true);
 		backright.setInverted(true);
 		
+		// Set the encoders' distance per pulse settings
 		leftEnc.setDistancePerPulse(RobotMap.distancePerEncPulse);
 		rightEnc.setDistancePerPulse(RobotMap.distancePerEncPulse);
 		
+		// Reset the encoders and gyro
 		leftEnc.reset();
 		rightEnc.reset();
 		gyro.reset();
@@ -59,7 +72,8 @@ public class DriveTrain extends Subsystem{
 	}
 	
 	/**
-	 * Drive the robot given inputs each set of wheels
+	 * Drives the robot given inputs for each set of wheels
+	 * Note: this drives the robot reversed and with the wheels swapped, because our driver likes it that way.
 	 * 
 	 * @param left the speed for the left wheels
 	 * @param right the speed for the right wheels
@@ -72,6 +86,12 @@ public class DriveTrain extends Subsystem{
 		rightSpeed = right;
 	}
 	
+	/**
+	 * Drives the robot given inputs for each set of wheels
+	 * 
+	 * @param left the speed for the left wheels
+	 * @param right the speed for the right wheels
+	 */
 	public void tankDriveAuto(double left, double right){
 		if(RobotMap.reverseToggle)drive.tankDrive(left, right);
 		else drive.tankDrive(right, left);

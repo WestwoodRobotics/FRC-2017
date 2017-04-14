@@ -6,10 +6,9 @@ import org.usfirst.frc.team2583.robot.commands.AutoLeftGear;
 import org.usfirst.frc.team2583.robot.commands.AutoRightGear;
 import org.usfirst.frc.team2583.robot.commands.BaselineAuto;
 import org.usfirst.frc.team2583.robot.commands.UpdateDash;
-import org.usfirst.frc.team2583.robot.subsystems.BallFlap;
-import org.usfirst.frc.team2583.robot.subsystems.Basket;
 import org.usfirst.frc.team2583.robot.subsystems.Climber;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2583.robot.subsystems.GearMech;
 import org.usfirst.frc.team2583.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,13 +26,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-//	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public final static GearMech gearMech = new GearMech();
 	public final static DriveTrain drivetrain = new DriveTrain();
-	public final static BallFlap flap = new BallFlap();
 	public final static Roller roller = new Roller();
-	public final static Basket basket = new Basket();
 	public final static Climber climber = new Climber();
-//	public static Grabber grabber;// = new Grabber();
 	public final static OI oi = new OI();
 	
     Command autonomousCommand;

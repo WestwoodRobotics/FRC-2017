@@ -13,8 +13,6 @@ public class RobotMap {
 	public static final int fRight = 4;
 	public static final int bRight = 2;
 	
-	public static final int rollerTalon = 5;
-    public static final int jostlerTalon = 6;
     public static final int gearTalon = 6;		// TODO: make sure that this port is available
     public static final int windowTalon = 7;
     public static final int climbTalon = 8;
@@ -50,7 +48,6 @@ public class RobotMap {
     public static final double maxNormSpeed = 0.75;	// Maximum drive speed while in normal mode
     public static final double maxSlowSpeed = 0.5;	// Maximum drive speed while in slow mode
     public static final double climbSpeed = 1;		// Speed for the climber
-    public static final double rollSpeed = 0.8;		// Speed for the intake
     public static final double autoSpeed = 0.6;		// Speed for the driveTrain while in autonomous mode
     public static final double gearSpeed = 1;		// Speed for the gearMech
     

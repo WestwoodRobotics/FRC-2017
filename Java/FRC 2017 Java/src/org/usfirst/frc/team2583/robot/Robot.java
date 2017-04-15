@@ -9,7 +9,6 @@ import org.usfirst.frc.team2583.robot.commands.UpdateDash;
 import org.usfirst.frc.team2583.robot.subsystems.Climber;
 import org.usfirst.frc.team2583.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2583.robot.subsystems.GearMech;
-import org.usfirst.frc.team2583.robot.subsystems.Roller;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -28,7 +27,6 @@ public class Robot extends IterativeRobot {
 
 	public final static GearMech gearMech = new GearMech();			// The GearMech is the active gear mechanism
 	public final static DriveTrain drivetrain = new DriveTrain();	// The DriveTrain controls the wheels of the robot
-	public final static Roller roller = new Roller();				// The roller is used for intake on the robot
 	public final static Climber climber = new Climber();			// The climber is used to climb the rope at the end of the match
 	public final static OI oi = new OI();							// The Operator Interface class handles button presses
 	
